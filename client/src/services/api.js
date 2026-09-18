@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   timeout: 30000,
   headers: { 'Content-Type': 'application/json' }
 });
@@ -56,8 +56,8 @@ export const documentAPI = {
   upload: (formData) => api.post('/documents/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
   getPatientDocs: (patientId, params) => api.get(`/documents/patient/${patientId}`, { params }),
   getDetails: (docId) => api.get(`/documents/${docId}`),
-  getFile: (docId) => `/api/documents/${docId}/file`,
-  retry: (docId) => api.post(`/documents/${docId}/retry`),
+getFile: (docId) =>
+  `${import.meta.env.VITE_API_URL || '/api'}/documents/${encodeURIComponent(docId)}/file`,  retry: (docId) => api.post(`/documents/${docId}/retry`),
   updateCategory: (docId, category) => api.put(`/documents/${docId}/category`, { category }),
   getLabResults: (patientId) => api.get(`/documents/lab-results/${patientId}`),
   compare: (patientId, docId1, docId2) => api.get(`/documents/compare/${patientId}`, { params: { docId1, docId2 } })
