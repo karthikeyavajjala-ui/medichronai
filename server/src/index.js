@@ -59,6 +59,6 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
   console.log(`🔒 Auth: JWT + bcrypt`);
   console.log(`📁 Uploads: ${uploadDir}`);
-  console.log(`🗄️  Database: SQLite via Prisma`);
+  console.log(`🗄️  Database: PostgreSQL via Prisma`);
   console.log(`\n✨ Ready for production workflows\n`);
 });
